@@ -1,5 +1,5 @@
 'use strict';
-console.log(1111);
+const TASK_COUNT = 3;
 const menuTemplate = () => {
     return (
         `<section class="control__btn-wrap">
@@ -32,11 +32,161 @@ const menuTemplate = () => {
         </section>`
     )
 };
+const filterTemplate = () => {
+    return (
+        `<section class="main__filter filter container">
+        <input
+          type="radio"
+          id="filter__all"
+          class="filter__input visually-hidden"
+          name="filter"
+          checked
+        />
+        <label for="filter__all" class="filter__label">
+          All <span class="filter__all-count">13</span></label
+        >
+        <input
+          type="radio"
+          id="filter__overdue"
+          class="filter__input visually-hidden"
+          name="filter"
+          disabled
+        />
+        <label for="filter__overdue" class="filter__label"
+          >Overdue <span class="filter__overdue-count">0</span></label
+        >
+        <input
+          type="radio"
+          id="filter__today"
+          class="filter__input visually-hidden"
+          name="filter"
+          disabled
+        />
+        <label for="filter__today" class="filter__label"
+          >Today <span class="filter__today-count">0</span></label
+        >
+        <input
+          type="radio"
+          id="filter__favorites"
+          class="filter__input visually-hidden"
+          name="filter"
+        />
+        <label for="filter__favorites" class="filter__label"
+          >Favorites <span class="filter__favorites-count">1</span></label
+        >
+        <input
+          type="radio"
+          id="filter__repeating"
+          class="filter__input visually-hidden"
+          name="filter"
+        />
+        <label for="filter__repeating" class="filter__label"
+          >Repeating <span class="filter__repeating-count">1</span></label
+        >
+        <input
+          type="radio"
+          id="filter__archive"
+          class="filter__input visually-hidden"
+          name="filter"
+        />
+        <label for="filter__archive" class="filter__label"
+          >Archive <span class="filter__archive-count">115</span></label
+        >
+      </section>`
+    )
+};
+const boardTemplate = () => {
+    return (
+        `<section class="board container"></section>`
+    )
+};
+const boardFilterTemplate = () => {
+    return (
+        `<div class="board__filter-list">
+          <a href="#" class="board__filter" data-sort-type="default">SORT BY DEFAULT</a>
+          <a href="#" class="board__filter" data-sort-type="date-up">SORT BY DATE up</a>
+          <a href="#" class="board__filter" data-sort-type="date-down">SORT BY DATE down</a>
+        </div>`
+    )
+};
+const boardTasksTemplate = () => {
+    return (
+        `<div class="board__tasks"></div>`
+    )
+};
+const boardTaskTemplate = () => {
+    return (
+        `<article class="card card--black">
+            <div class="card__form">
+              <div class="card__inner">
+                <div class="card__control">
+                  <button type="button" class="card__btn card__btn--edit">
+                    edit
+                  </button>
+                  <button type="button" class="card__btn card__btn--archive">
+                    archive
+                  </button>
+                  <button
+                    type="button"
+                    class="card__btn card__btn--favorites card__btn--disabled"
+                  >
+                    favorites
+                  </button>
+                </div>
+
+                <div class="card__color-bar">
+                  <svg class="card__color-bar-wave" width="100%" height="10">
+                    <use xlink:href="#wave"></use>
+                  </svg>
+                </div>
+
+                <div class="card__textarea-wrap">
+                  <p class="card__text">Example task with default color.</p>
+                </div>
+
+                <div class="card__settings">
+                  <div class="card__details">
+                    <div class="card__dates">
+                      <div class="card__date-deadline">
+                        <p class="card__input-deadline-wrap">
+                          <span class="card__date">23 September</span>
+                          <span class="card__time">16:15</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>`
+    )
+};
+const boardMoreTemplate = () => {
+    return (
+        `<button class="load-more" type="button">load more</button>`
+    )
+};
+
+
 const siteMain = document.querySelector('main');
 const siteMenu = siteMain.querySelector('.main__control');
-console.log(siteMain, siteMenu);
+
 const render = (container, template, place) =>{
     container.insertAdjacentHTML(place, template)
 };
 
 render(siteMenu, menuTemplate(), 'beforeend');
+render(siteMain, filterTemplate(), 'beforeend');
+render(siteMain, boardTemplate(), 'beforeend');
+
+const siteBoard = siteMain.querySelector('.board');
+render(siteBoard, boardFilterTemplate(), 'beforeend');
+render(siteBoard, boardTasksTemplate(), 'beforeend');
+render(siteBoard, boardMoreTemplate(), 'beforeend');
+
+const siteTasks = siteBoard.querySelector('.board__tasks');
+for (let i = 0; i < TASK_COUNT; i++){
+    console.log(11);
+    render(siteTasks, boardTaskTemplate(), 'beforeend');
+}
+
