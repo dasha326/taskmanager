@@ -1,5 +1,5 @@
 import {COLORS} from "../const.js";
-const descriptionVariable = ['Изучить теорию','Сделать домашку',' Пройти интенсив на соточку'];
+const descriptionVariable = [`Изучить теорию`, `Сделать домашку`, ` Пройти интенсив на соточку`];
 const DefaultRepeatingDays = {
     "mo": false,
     "tu": false,
@@ -40,9 +40,9 @@ const generateTask = () => {
         dueDate,
         repeatingDays: dueDate ? DefaultRepeatingDays : generateRepeatingDays(),
         color: getRandomArrayItem(COLORS),
-        isArchive: true,
+        isArchive: false,
         isFavorite: false,
-    }
+    };
 };
 const generateTasks = (count) => {
     return new Array(count).fill(``).map(generateTask);

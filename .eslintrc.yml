@@ -7,3 +7,7 @@ env:
   browser: true
 
 extends: 'htmlacademy/es6'
+
+rules:
+  indent: [error, 4,  { SwitchCase: 1 }]
+
