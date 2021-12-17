@@ -1,5 +1,6 @@
-const castTimeFormat = (value) => {
-    return value < 10 ? `0${value}` : String(value);
+export const RenderPosition = {
+    AFTERBEGIN: `afterbegin`,
+    BEFOREEND: `beforeend`
 };
 
 export const createElement = (template) => {
@@ -7,18 +8,6 @@ export const createElement = (template) => {
     newElement.innerHTML = template;
 
     return newElement.firstChild;
-};
-
-export const formatTime = (date) => {
-    const hours = castTimeFormat(date.getHours() % 12);
-    const minutes = castTimeFormat(date.getMinutes());
-
-    return `${hours}:${minutes}`;
-};
-
-export const RenderPosition = {
-    AFTERBEGIN: `afterbegin`,
-    BEFOREEND: `beforeend`
 };
 
 export const render = (container, element, place) =>{
@@ -30,4 +19,16 @@ export const render = (container, element, place) =>{
             container.append(element);
             break;
     }
+};
+
+export const replace = (oldElem, newElem) => {
+    const isExistElements = !!(oldElem && newElem);
+    if (isExistElements) {
+        oldElem.replaceWith(newElem);
+    }
+};
+
+export const remove = (component) => {
+    component.getElement().remove();
+    component.removeElement();
 };
