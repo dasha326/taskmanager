@@ -6,8 +6,8 @@ const createTaskTemplate = (task) => {
     const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
 
     const isExpired = dueDate instanceof Date && dueDate < Date.now();
-
     const isDateShowing = !!dueDate;
+
     const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
     const time = isDateShowing ? formatTime(dueDate) : ``;
 
@@ -54,7 +54,7 @@ const createTaskTemplate = (task) => {
     );
 };
 
-export default class Task extends AbstractComponent{
+export default class Task extends AbstractComponent {
     constructor(task) {
         super();
         this._task = task;
@@ -63,7 +63,13 @@ export default class Task extends AbstractComponent{
         return createTaskTemplate(this._task);
     }
 
-    setEditHandler(cb) {
+    setEdiClickHandler(cb) {
         this.getElement().querySelector(`.card__btn--edit`).addEventListener(`click`, cb);
+    }
+    setArchiveClickHandler(cb) {
+        this.getElement().querySelector(`.card__btn--archive`).addEventListener(`click`, cb);
+    }
+    setFavoritesClickHandler(cb) {
+        this.getElement().querySelector(`.card__btn--favorites`).addEventListener(`click`, cb);
     }
 }

@@ -19,5 +19,5 @@ render(siteMain, new FilterComponent(filters).getElement(), RenderPosition.BEFOR
 const boardComponent = new BordComponent();
 const boardElement = boardComponent.getElement();
 render(siteMain, boardElement, RenderPosition.BEFOREEND);
-const boardController = new BoardController(boardElement);
-boardController.renderBoard(tasks);
+const boardController = new BoardController(boardComponent);
+boardController.render(tasks);
